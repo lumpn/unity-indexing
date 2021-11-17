@@ -1,6 +1,6 @@
 {
     "name": "Lumpn.Collections.Indexing",
-    "rootNamespace": "",
+    "rootNamespace": "Lumpn.Collections.Indexing",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -10,5 +10,5 @@
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
-    "noEngineReferences": false
+    "noEngineReferences": true
 }
