@@ -1,0 +1,15 @@
+{
+  "name": "de.lumpn.unity-indexer",
+  "version": "0.1.0",
+  "displayName": "Indexer",
+  "description": "Indexed foreach loops.",
+  "keywords": [
+    "lumpn",
+    "indexer",
+    "foreach"
+  ],
+  "author": {
+    "name": "Jonas Boetel",
+    "url": "https://github.com/lumpn"
+  }
+}
