@@ -42,5 +42,5 @@ Indexed `foreach` loops with minimal overhead.
 - Do not use anonymous types.
 - Use `ValueTuple` instead of `Tuple`.
 - `KeyValuePair` is also good but does not provide automatic deconstruction.
-- In `Select` prefer `(..) => new ValueTuple(..)` over `ValueTuple.Create`.
+- In `Select` prefer lambda over generic function.
 - Prefer coroutine over `Select`.

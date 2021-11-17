@@ -2,11 +2,11 @@
 // MIT License
 // Copyright(c) 2021 Jonas Boetel
 //----------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
-using static System.TupleExtensions;
 
 namespace Lumpn.Collections.Indexing.Demo
 {
@@ -20,13 +20,6 @@ namespace Lumpn.Collections.Indexing.Demo
             var list = items.ToList();
             var array = items.ToArray();
             var set = new HashSet<int>(items);
-
-            //Profiler.BeginSample("JIT");
-            //RunLoops(items, "Enumerable");
-            //RunLoops(array, "Array");
-            //RunLoops(list, "List");
-            //RunLoops(set, "HashSet");
-            //Profiler.EndSample();
 
             for (int i = 0; i < 10; i++)
             {
@@ -44,43 +37,43 @@ namespace Lumpn.Collections.Indexing.Demo
 
         private int RunLoops(IEnumerable<int> items, string typeName)
         {
+            Profiler.BeginSample(typeName);
+            int sum = RunLoops(items);
+            Profiler.EndSample();
+
+            return sum;
+        }
+
+        private int RunLoops(IEnumerable<int> items)
+        {
             int sum = 0;
 
-            Profiler.BeginSample($"{typeName} foreach");
+            Profiler.BeginSample("foreach");
             sum += RunForeach(items);
             Profiler.EndSample();
 
-            Profiler.BeginSample($"{typeName} foreach Indexed");
+            Profiler.BeginSample("foreach Indexed");
             sum += RunIndexed(items);
             Profiler.EndSample();
 
-            Profiler.BeginSample($"{typeName} foreach Wrap coroutine");
+            Profiler.BeginSample("foreach Wrap coroutine");
             sum += RunWrap(items);
             Profiler.EndSample();
 
-            Profiler.BeginSample($"{typeName} foreach Select anonymous type");
+            Profiler.BeginSample("foreach Select anonymous type");
             sum += RunSelectAnonymous(items);
             Profiler.EndSample();
 
-            Profiler.BeginSample($"{typeName} foreach Select Tuple");
+            Profiler.BeginSample("foreach Select Tuple");
             sum += RunSelectTuple(items);
             Profiler.EndSample();
-            Profiler.BeginSample($"{typeName} foreach Select Tuple2");
-            sum += RunSelectTuple2(items);
-            Profiler.EndSample();
 
-            Profiler.BeginSample($"{typeName} foreach Select ValueTuple");
+            Profiler.BeginSample("foreach Select ValueTuple");
             sum += RunSelectValueTuple(items);
             Profiler.EndSample();
-            Profiler.BeginSample($"{typeName} foreach Select ValueTuple2");
-            sum += RunSelectValueTuple2(items);
-            Profiler.EndSample();
 
-            Profiler.BeginSample($"{typeName} foreach Select KeyValuePair");
+            Profiler.BeginSample("foreach Select KeyValuePair");
             sum += RunSelectKeyValuePair(items);
-            Profiler.EndSample();
-            Profiler.BeginSample($"{typeName} foreach Select KeyValuePair2");
-            sum += RunSelectKeyValuePair2(items);
             Profiler.EndSample();
 
             return sum;
@@ -109,18 +102,7 @@ namespace Lumpn.Collections.Indexing.Demo
         private static int RunSelectTuple(IEnumerable<int> items)
         {
             int sum = 0;
-            foreach (var (index, item) in items.Select((a, b) => new System.Tuple<int, int>(a, b)))
-            {
-                sum += index;
-                sum += item;
-            }
-            return sum;
-        }
-
-        private static int RunSelectTuple2(IEnumerable<int> items)
-        {
-            int sum = 0;
-            foreach (var (index, item) in items.Select(System.Tuple.Create<int, int>))
+            foreach (var (index, item) in items.Select((a, b) => new Tuple<int, int>(a, b)))
             {
                 sum += index;
                 sum += item;
@@ -131,18 +113,7 @@ namespace Lumpn.Collections.Indexing.Demo
         private static int RunSelectValueTuple(IEnumerable<int> items)
         {
             int sum = 0;
-            foreach (var (index, item) in items.Select((a, b) => new System.ValueTuple<int, int>(a, b)))
-            {
-                sum += index;
-                sum += item;
-            }
-            return sum;
-        }
-
-        private static int RunSelectValueTuple2(IEnumerable<int> items)
-        {
-            int sum = 0;
-            foreach (var (index, item) in items.Select(System.ValueTuple.Create<int, int>))
+            foreach (var (index, item) in items.Select((a, b) => new ValueTuple<int, int>(a, b)))
             {
                 sum += index;
                 sum += item;
@@ -159,22 +130,6 @@ namespace Lumpn.Collections.Indexing.Demo
                 sum += kvp.Value;
             }
             return sum;
-        }
-
-        private static int RunSelectKeyValuePair2(IEnumerable<int> items)
-        {
-            int sum = 0;
-            foreach (var kvp in items.Select(CreatePair))
-            {
-                sum += kvp.Key;
-                sum += kvp.Value;
-            }
-            return sum;
-        }
-
-        private static KeyValuePair<int, int> CreatePair(int a, int b)
-        {
-            return new KeyValuePair<int, int>(a, b);
         }
 
         private static int RunIndexed(IEnumerable<int> items)
@@ -197,12 +152,12 @@ namespace Lumpn.Collections.Indexing.Demo
             return sum;
         }
 
-        private static IEnumerable<System.ValueTuple<int, T>> Wrap<T>(IEnumerable<T> source)
+        private static IEnumerable<ValueTuple<int, T>> Wrap<T>(IEnumerable<T> source)
         {
             int index = 0;
             foreach (var item in source)
             {
-                yield return System.ValueTuple.Create(index++, item);
+                yield return ValueTuple.Create(index++, item);
             }
         }
     }
