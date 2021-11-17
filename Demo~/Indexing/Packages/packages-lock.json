@@ -21,7 +21,7 @@
         "com.unity.ext.nunit": "1.0.0"
       }
     },
-    "de.lumpn.unity-indexer": {
+    "de.lumpn.unity-indexing": {
       "version": "file:../../../",
       "depth": 0,
       "source": "local",

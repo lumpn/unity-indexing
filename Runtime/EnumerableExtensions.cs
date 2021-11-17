@@ -8,12 +8,9 @@ namespace Lumpn.Collections.Indexing
 {
     public static class EnumerableExtensions
     {
-        public static Indexer<T> Indexed<T>(IEnumerable<T> items)
+        public static Indexer<T> Indexed<T>(this IEnumerable<T> source)
         {
-            var list = new List<T>();
-            var enumerator = list.GetEnumerator();
-            return new Indexer<T>(items);
+            return new Indexer<T>(source);
         }
-
     }
 }
