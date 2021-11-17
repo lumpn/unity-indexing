@@ -1,6 +1,15 @@
 # Indexing
 Indexed `foreach` loops with minimal overhead.
 
+# Usage
+
+```csharp
+foreach (var (index, item) in items.Indexed())
+{
+    Process(item, $"Item {index}");
+}
+```
+
 # Performance
 
 | Collection | Method | GC Alloc B | Time ms |
