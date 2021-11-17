@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dae21484c43924994399bdd8994564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numItems: 1000
+  numItems: 10000
 --- !u!4 &28622154
 Transform:
   m_ObjectHideFlags: 0
