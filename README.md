@@ -11,6 +11,7 @@ foreach (var (index, item) in items.Indexed())
 ```
 
 # Performance
+Iterating over 100,000 integers.
 
 | Collection | Method | GC Alloc B | Time ms |
 |------------|--------|----------|---------|
