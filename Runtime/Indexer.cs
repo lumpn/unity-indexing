@@ -1,61 +1,35 @@
+//----------------------------------------
+// MIT License
+// Copyright(c) 2021 Jonas Boetel
+//----------------------------------------
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-public struct Indexer<T> : IEnumerable<System.ValueTuple<int, T>>
+namespace Lumpn.Collections.Indexing
 {
-    private readonly IEnumerable<T> items;
-
-    public struct Enumerator : IEnumerator<System.ValueTuple<int, T>>
+    public struct Indexer<T> : IEnumerable<ValueTuple<int, T>>
     {
-        private int index;
-        private IEnumerator<T> enumerator;
+        private readonly IEnumerable<T> items;
 
-        public Enumerator(Indexer<T> indexer)
+        public Indexer(IEnumerable<T> items)
         {
-            index = 0;
-            enumerator = indexer.items.GetEnumerator();
+            this.items = items;
         }
 
-        public (int, T) Current => System.ValueTuple.Create(index, enumerator.Current);
-
-        object IEnumerator.Current => Current;
-
-        public void Dispose()
+        public Enumerator<T> GetEnumerator()
         {
-            enumerator.Dispose();
+            return new Enumerator<T>(this);
         }
 
-        public bool MoveNext()
+        IEnumerator<ValueTuple<int, T>> IEnumerable<ValueTuple<int, T>>.GetEnumerator()
         {
-            index++;
-            return enumerator.MoveNext();
+            return GetEnumerator();
         }
 
-        public void Reset()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            index = 0;
-            enumerator.Reset();
+            return GetEnumerator();
         }
-    }
-
-    public Indexer(IEnumerable<T> items)
-    {
-        this.items = items;
-    }
-
-    public Enumerator GetEnumerator()
-    {
-        return new Enumerator(this);
-    }
-
-    IEnumerator<System.ValueTuple<int, T>> IEnumerable<System.ValueTuple<int, T>>.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 }
-

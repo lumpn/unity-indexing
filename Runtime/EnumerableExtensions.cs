@@ -1,14 +1,19 @@
+//----------------------------------------
+// MIT License
+// Copyright(c) 2021 Jonas Boetel
+//----------------------------------------
 using System.Collections.Generic;
 
-public static class EnumerableExtensions
+namespace Lumpn.Collections.Indexing
 {
-
-    public static Indexer<T> Indexed<T>(IEnumerable<T> items)
+    public static class EnumerableExtensions
     {
-        var list = new List<T>();
-        var enumerator = list.GetEnumerator();
-        return new Indexer<T>(items);
+        public static Indexer<T> Indexed<T>(IEnumerable<T> items)
+        {
+            var list = new List<T>();
+            var enumerator = list.GetEnumerator();
+            return new Indexer<T>(items);
+        }
+
     }
-
 }
-

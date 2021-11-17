@@ -1,11 +1,12 @@
 {
-  "name": "de.lumpn.unity-indexer",
+  "name": "de.lumpn.unity-indexing",
   "version": "0.1.0",
-  "displayName": "Indexer",
+  "displayName": "Collections Indexing",
   "description": "Indexed foreach loops.",
   "keywords": [
     "lumpn",
-    "indexer",
+    "indexing",
+    "collections",
     "foreach"
   ],
   "author": {
