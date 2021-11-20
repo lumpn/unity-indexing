@@ -85,6 +85,7 @@ namespace Lumpn.Collections.Indexing.Demo
             foreach (var item in items)
             {
                 sum += item;
+                sum += item;
             }
             return sum;
         }
@@ -92,9 +93,10 @@ namespace Lumpn.Collections.Indexing.Demo
         private static int RunSelectAnonymous(IEnumerable<int> items)
         {
             int sum = 0;
-            foreach (var value in items.Select((index, item) => new { index, item }))
+            foreach (var value in items.Select((item, index) => new { item, index }))
             {
                 sum += value.item;
+                sum += value.index;
             }
             return sum;
         }
@@ -102,10 +104,10 @@ namespace Lumpn.Collections.Indexing.Demo
         private static int RunSelectTuple(IEnumerable<int> items)
         {
             int sum = 0;
-            foreach (var (index, item) in items.Select((a, b) => new Tuple<int, int>(a, b)))
+            foreach (var (item, index) in items.Select((item, index) => new Tuple<int, int>(item, index)))
             {
-                sum += index;
                 sum += item;
+                sum += index;
             }
             return sum;
         }
@@ -113,10 +115,10 @@ namespace Lumpn.Collections.Indexing.Demo
         private static int RunSelectValueTuple(IEnumerable<int> items)
         {
             int sum = 0;
-            foreach (var (index, item) in items.Select((a, b) => new ValueTuple<int, int>(a, b)))
+            foreach (var (item, index) in items.Select((a, b) => new ValueTuple<int, int>(a, b)))
             {
-                sum += index;
                 sum += item;
+                sum += index;
             }
             return sum;
         }
@@ -124,7 +126,7 @@ namespace Lumpn.Collections.Indexing.Demo
         private static int RunSelectKeyValuePair(IEnumerable<int> items)
         {
             int sum = 0;
-            foreach (var kvp in items.Select((index, item) => new KeyValuePair<int, int>(index, item)))
+            foreach (var kvp in items.Select((item, index) => new KeyValuePair<int, int>(item, index)))
             {
                 sum += kvp.Key;
                 sum += kvp.Value;
@@ -135,9 +137,10 @@ namespace Lumpn.Collections.Indexing.Demo
         private static int RunIndexed(IEnumerable<int> items)
         {
             int sum = 0;
-            foreach (var (index, item) in items.Indexed())
+            foreach (var (item, index) in items.Indexed())
             {
                 sum += item;
+                sum += index;
             }
             return sum;
         }
@@ -145,19 +148,20 @@ namespace Lumpn.Collections.Indexing.Demo
         private static int RunWrap(IEnumerable<int> items)
         {
             int sum = 0;
-            foreach (var (index, item) in Wrap(items))
+            foreach (var (item, index) in Wrap(items))
             {
                 sum += item;
+                sum += index;
             }
             return sum;
         }
 
-        private static IEnumerable<ValueTuple<int, T>> Wrap<T>(IEnumerable<T> source)
+        private static IEnumerable<ValueTuple<T, int>> Wrap<T>(IEnumerable<T> source)
         {
             int index = 0;
             foreach (var item in source)
             {
-                yield return ValueTuple.Create(index++, item);
+                yield return ValueTuple.Create(item, index++);
             }
         }
     }

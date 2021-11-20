@@ -14,11 +14,11 @@ namespace Lumpn.Collections.Indexing.Tests
         [Test]
         public void TestDeconstructTuple()
         {
-            var tuple = Tuple.Create(5, "test");
-            var (index, text) = tuple;
+            var tuple = Tuple.Create("test", 5);
+            var (text, index) = tuple;
 
-            Assert.AreEqual(5, index);
             Assert.AreEqual("test", text);
+            Assert.AreEqual(5, index);
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace Lumpn.Collections.Indexing.Tests
 
             while (indexedEnumerator.MoveNext())
             {
-                var (index, item) = indexedEnumerator.Current;
+                var (item, index) = indexedEnumerator.Current;
                 Assert.AreEqual(item, index);
             }
         }

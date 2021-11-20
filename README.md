@@ -1,12 +1,36 @@
 # Indexing
 Indexed `foreach` loops with minimal overhead.
 
+# Problem
+
+Suppose you want a `foreach` loop but you also need the index of each element. You could keep track of the index yourself, but that's error prone especially when using `continue`.
+
+```csharp
+int index = 0;
+foreach (var item in collection)
+{
+    Process(item, index);
+    index++;
+}
+```
+
+The [suggested solution on StackOverflow](https://stackoverflow.com/questions/43021/how-do-you-get-the-index-of-the-current-iteration-of-a-foreach-loop) uses `Select` with index and anonymous types to achieve the desired result, but that causes memory allocation for every element.
+
+```csharp
+foreach (var entry in collection.Select((item, index) => new { item, index }))
+{
+    Process(item, index);
+}
+```
+
+This package provides an allocation-free alternative.
+
 # Usage
 
 ```csharp
-foreach (var (index, item) in items.Indexed())
+foreach (var (item, index) in items.Indexed())
 {
-    Process(item, $"Item {index}");
+    Process(item, index);
 }
 ```
 

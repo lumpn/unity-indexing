@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Lumpn.Collections.Indexing
 {
-    public struct Enumerator<T> : IEnumerator<ValueTuple<int, T>>
+    public struct Enumerator<T> : IEnumerator<ValueTuple<T, int>>
     {
         private readonly IEnumerator<T> enumerator;
         private int index;
@@ -19,9 +19,9 @@ namespace Lumpn.Collections.Indexing
             this.index = -1;
         }
 
-        public ValueTuple<int, T> Current
+        public ValueTuple<T, int> Current
         {
-            get { return ValueTuple.Create(index, enumerator.Current); }
+            get { return ValueTuple.Create(enumerator.Current, index); }
         }
 
         object IEnumerator.Current

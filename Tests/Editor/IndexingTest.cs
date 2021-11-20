@@ -14,7 +14,7 @@ namespace Lumpn.Collections.Indexing.Tests
         public void TestForeach()
         {
             var items = Enumerable.Range(0, 10);
-            foreach (var (index, item) in items.Indexed())
+            foreach (var (item, index) in items.Indexed())
             {
                 Assert.AreEqual(item, index);
             }
