@@ -8,12 +8,12 @@ using System.Collections.Generic;
 
 namespace Lumpn.Collections.Indexing
 {
-    public struct Enumerator<T> : IEnumerator<ValueTuple<T, int>>
+    public struct IndexedEnumerator<T> : IEnumerator<ValueTuple<T, int>>
     {
         private readonly IEnumerator<T> enumerator;
         private int index;
 
-        public Enumerator(IEnumerator<T> enumerator)
+        public IndexedEnumerator(IEnumerator<T> enumerator)
         {
             this.enumerator = enumerator;
             this.index = -1;

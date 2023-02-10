@@ -26,7 +26,7 @@ namespace Lumpn.Collections.Indexing.Tests
         {
             var items = Enumerable.Range(0, 10);
             var itemsEnumerator = items.GetEnumerator();
-            var indexedEnumerator = new Enumerator<int>(itemsEnumerator);
+            var indexedEnumerator = new IndexedEnumerator<int>(itemsEnumerator);
 
             while (indexedEnumerator.MoveNext())
             {
@@ -40,7 +40,7 @@ namespace Lumpn.Collections.Indexing.Tests
         {
             var items = Enumerable.Range(0, 10).ToList();
             var itemsEnumerator = items.GetEnumerator();
-            var indexedEnumerator = new Enumerator<int>(itemsEnumerator);
+            var indexedEnumerator = new IndexedEnumerator<int>(itemsEnumerator);
 
             indexedEnumerator.MoveNext();
             indexedEnumerator.MoveNext();

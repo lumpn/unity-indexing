@@ -8,9 +8,9 @@ namespace Lumpn.Collections.Indexing
 {
     public static class EnumerableExtensions
     {
-        public static Indexer<T> Indexed<T>(this IEnumerable<T> source)
+        public static IndexedEnumerable<T> Indexed<T>(this IEnumerable<T> source)
         {
-            return new Indexer<T>(source);
+            return new IndexedEnumerable<T>(source);
         }
     }
 }
