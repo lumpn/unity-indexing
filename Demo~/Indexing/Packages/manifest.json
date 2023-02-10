@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "com.unity.test-framework": "1.1.30",
-    "de.lumpn.unity-indexing": "file:../../../"
-  }
-}
