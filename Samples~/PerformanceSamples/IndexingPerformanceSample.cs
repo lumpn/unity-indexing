@@ -8,9 +8,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-namespace Lumpn.Collections.Indexing.Demo
+namespace Lumpn.Collections.Indexing.Samples
 {
-    public sealed class Demo : MonoBehaviour
+    public sealed class IndexingPerformanceSample : MonoBehaviour
     {
         [SerializeField] private int numItems;
 
@@ -28,11 +28,6 @@ namespace Lumpn.Collections.Indexing.Demo
                 RunLoops(list, "List");
                 RunLoops(set, "HashSet");
             }
-        }
-
-        void Update()
-        {
-            Debug.Break();
         }
 
         private int RunLoops(IEnumerable<int> items, string typeName)
