@@ -19,7 +19,7 @@ The [suggested solution on StackOverflow](https://stackoverflow.com/questions/43
 ```csharp
 foreach (var entry in collection.Select((item, index) => new { item, index }))
 {
-    Process(item, index);
+    Process(entry.item, entry.index);
 }
 ```
 
@@ -70,11 +70,3 @@ Iterating over 100,000 integers.
 | Enumerable.Range | Select KeyValuePair | 116 | 5.57 |
 | Enumerable.Range | Select anonymous | 2.3 M | 15.99 |
 | Enumerable.Range | Select Tuple | 2.3 M | 17.04 |
-
-# Notes
-
-- Do not use anonymous types.
-- Use `ValueTuple` instead of `Tuple`.
-- `KeyValuePair` is also good but does not provide automatic deconstruction.
-- In `Select` prefer lambda over generic function.
-- Prefer coroutine over `Select`.
