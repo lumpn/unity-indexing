@@ -1,6 +1,6 @@
 {
     "name": "Lumpn.Collections.Indexing.Editor.Tests",
-    "rootNamespace": "Lumpn.Collections.Indexing.Tests",
+    "rootNamespace": "",
     "references": [
         "GUID:c0da52624b668a34290142ee0fa744d6"
     ],
