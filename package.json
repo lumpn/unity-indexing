@@ -1,6 +1,6 @@
 {
   "name": "de.lumpn.unity-indexing",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "displayName": "Lumpn Collections Indexing",
   "description": "Indexed foreach loops.",
   "dependencies": {
