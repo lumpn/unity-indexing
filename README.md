@@ -1,4 +1,4 @@
-# Indexing
+# Collections Indexing
 Indexed `foreach` loops with minimal overhead.
 
 # Problem
