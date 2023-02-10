@@ -14,7 +14,7 @@ namespace Lumpn.Collections.Indexing.Tests
         [Test]
         public void TestDeconstructTuple()
         {
-            var tuple = Tuple.Create("test", 5);
+            var tuple = ValueTuple.Create("test", 5);
             var (text, index) = tuple;
 
             Assert.AreEqual("test", text);
