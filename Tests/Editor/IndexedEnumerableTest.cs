@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Lumpn.Collections.Indexing.Tests
 {
     [TestFixture]
-    public sealed class IndexingTest
+    public sealed class IndexedEnumerableTest
     {
         [Test]
         public void TestForeach()

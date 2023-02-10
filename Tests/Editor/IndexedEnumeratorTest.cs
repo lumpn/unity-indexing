@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace Lumpn.Collections.Indexing.Tests
 {
     [TestFixture]
-    public sealed class EnumeratorTest
+    public sealed class IndexedEnumeratorTest
     {
         [Test]
         public void TestDeconstructTuple()
