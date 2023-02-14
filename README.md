@@ -70,3 +70,6 @@ Iterating over 100,000 integers.
 | Enumerable.Range | Select KeyValuePair | 116 | 5.57 |
 | Enumerable.Range | Select anonymous | 2.3 M | 15.99 |
 | Enumerable.Range | Select Tuple | 2.3 M | 17.04 |
+
+## Samples
+See `Samples` for details.
