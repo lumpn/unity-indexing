@@ -38,7 +38,7 @@ foreach (var (item, index) in items.Indexed())
 Iterating over 100,000 integers.
 
 | Collection | Method | GC Alloc B | Time ms |
-|------------|--------|----------|---------|
+|------------|--------|------------|---------|
 | List | `for` | 0 | 0.79 |
 | List | `foreach` (optimized) | 0 | 1.42 |
 | List | `foreach` | 40 | 1.42 |
@@ -50,7 +50,7 @@ Iterating over 100,000 integers.
 | List | Select Tuple | 2.3 M | 17.07 |
 
 | Collection | Method | GC Alloc B | Time ms |
-|------------|--------|----------|---------|
+|------------|--------|------------|---------|
 | Array | `for` | 0 | 0.23 |
 | Array | `foreach` (optimized) | 0 | 0.27 |
 | Array | `foreach` | 32 | 2.21 |
@@ -62,7 +62,7 @@ Iterating over 100,000 integers.
 | Array | Select Tuple | 2.3 M | 18.14 |
 
 | Collection | Method | GC Alloc B | Time ms |
-|------------|--------|----------|---------|
+|------------|--------|------------|---------|
 | Enumerable.Range | `foreach` | 36 | 1.34 |
 | Enumerable.Range | Indexed | 36 | 3.36 |
 | Enumerable.Range | Wrap coroutine | 100 | 3.44 |
